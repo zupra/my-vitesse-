@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Golos';
+  src: url('./fontGolos/Golos_Regular.woff2') format('woff2'),
+  url('./fontGolos/Golos_Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Golos';
+  src: url('./fontGolos/Golos_Medium.woff2') format('woff2'),
+  url('./fontGolos/Golos_Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Golos';
+  src: url('./fontGolos/Golos_Bold.woff2') format('woff2'),
+  url('./fontGolos/Golos_Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+html {
+  /* titanic */
+  color: #04153E 
+}
+
+html.dark {
+  background: #222;
+  color: white;
+}
+
+.page-enter-active, .page-leave-active { transition: opacity .2s; }
+.page-enter, .page-leave-active { opacity: 0; }
+

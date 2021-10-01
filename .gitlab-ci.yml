@@ -1,0 +1,28 @@
+variables:
+  GIT_STRATEGY: clone
+
+stages:
+  - develop
+  - production
+  - test
+
+before_script:
+  - mkdir ~/.ssh && chmod 700 ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+  - eval $(ssh-agent -s) && ssh-add ~/.ssh/id_rsa
+
+.cache: &cache
+  cache:
+    key:
+      files:
+        - yarn.lock
+        - package-lock.json
+    paths:
+      - node_modules
+
+deploy_develop:
+  stage: develop
+  script:
+    - ssh -o StrictHostKeyChecking=no deployer@act.rosatom.city 'cd /opt/rir/ag/src/ag-front && git pull && /usr/bin/docker run --rm --name yarn-generate -v /opt/rir/ag/src/ag-front:/usr/src/app -w /usr/src/app node bash -c "yarn && yarn build && yarn generate"'
+  only:
+    - develop
